@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import axios from '../../axios';
 
 import Post from '../../components/Post/Post';
@@ -11,13 +10,14 @@ class Blog extends Component {
   state = {
     posts: [],
     selectedPostId: null,
-    error: false
+    error: false,
   };
 
   componentDidMount = () => {
     axios
-      .get('/posts')
+      .get('https://jsonplaceholder.typicode.com/posts')
       .then(res => {
+        console.log(res.data);
         const posts = res.data.slice(0, 4);
         const updatedPosts = posts.map(post => ({ ...post, author: 'Max' }));
         this.setState({ posts: updatedPosts });
