@@ -18,9 +18,9 @@ class Blog extends Component {
       .get('https://jsonplaceholder.typicode.com/posts')
       .then(res => {
         console.log(res.data);
-        const posts = res.data.slice(0, 4);
-        const updatedPosts = posts.map(post => ({ ...post, author: 'Max' }));
-        this.setState({ posts: updatedPosts });
+        // const posts = res.data.slice(0, 4);
+        // const updatedPosts = posts.map(post => ({ ...post, author: 'Max' }));
+        // this.setState({ posts: updatedPosts });
       })
       .catch(err => this.setState({ error: true }));
   };
