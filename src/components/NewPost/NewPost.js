@@ -7,11 +7,11 @@ class NewPost extends Component {
   state = {
     title: '',
     body: '',
-    author: 'Max'
+    author: 'Max',
   };
 
   postDataHandler = () => {
-    axios.post('/posts', this.state).then(res => console.log(res));
+    // axios.post('/posts', this.state).then(res => console.log(res));
   };
 
   render() {
