@@ -15,12 +15,17 @@ class Blog extends Component {
 
   componentDidMount = () => {
     axios.get('https://jsonplaceholder.typicode.com/posts').then(res => {
-      console.log(res.data);
-      // const posts = res.data.slice(0, 4);
-      // const updatedPosts = posts.map(post => ({ ...post, author: 'Max' }));
-      // this.setState({ posts: updatedPosts });
+      // console.log(res.data);
+      // how you could paginate the data on the frontend
+      const posts = res.data.slice(0, 4);
+      const updatedPosts = posts.map(post => {
+        return {
+          ...post,
+          author: 'Paige',
+        };
+      });
+      this.setState({ posts: updatedPosts });
     });
-    // .catch(err => this.setState({ error: true }));
   };
 
   postSelectedHandler = id => {
@@ -28,17 +33,16 @@ class Blog extends Component {
   };
 
   render() {
-    let posts = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
-    if (!this.state.error) {
-      posts = this.state.posts.map(post => (
+    const posts = this.state.posts.map(post => {
+      return (
         <Post
           key={post.id}
           title={post.title}
           author={post.author}
-          clicked={this.postSelectedHandler.bind(this, post.id)}
+          clicked={() => this.postSelectedHandler(post.id)}
         />
-      ));
-    }
+      );
+    });
 
     return (
       <div>
