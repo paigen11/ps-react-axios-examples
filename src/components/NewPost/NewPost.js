@@ -11,7 +11,7 @@ class NewPost extends Component {
   };
 
   postDataHandler = () => {
-    // axios.post('/posts', this.state).then(res => console.log(res));
+    axios.post('/posts', this.state).then(res => console.log(res));
   };
 
   render() {

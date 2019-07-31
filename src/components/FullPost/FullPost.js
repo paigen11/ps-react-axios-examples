@@ -6,7 +6,7 @@ import './FullPost.css';
 
 class FullPost extends Component {
   state = {
-    loadedPost: null
+    loadedPost: null,
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -21,12 +21,12 @@ class FullPost extends Component {
       if (
         !this.state.loadedPost ||
         (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
-      ) 
-      // {
-      //   axios
-      //     .get(`/posts/${this.props.id}`)
-      //     .then(res => this.setState({ loadedPost: res.data }));
-      // }
+      ) {
+        axios.get(`/posts/${this.props.id}`).then(res => {
+          // console.log(res.data);
+          this.setState({ loadedPost: res.data });
+        });
+      }
     }
   };
 
@@ -35,7 +35,7 @@ class FullPost extends Component {
   };
 
   render() {
-    const loadedPost = this.state.loadedPost;
+    const { loadedPost } = this.state;
     let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
     // on first render, we get Id but fetch not completed yet
     if (this.props.id) post = <p style={{ textAlign: 'center' }}>Loading...</p>;
@@ -58,7 +58,7 @@ class FullPost extends Component {
 }
 
 FullPost.propTypes = {
-  id: PropTypes.number
+  id: PropTypes.number,
 };
 
 export default FullPost;
