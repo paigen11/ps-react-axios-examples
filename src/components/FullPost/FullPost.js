@@ -15,8 +15,7 @@ class FullPost extends Component {
       /*
       Calling setState inside componentDidUpdate causes infinite loop, so
       if post loaded, check that props id differs from current loaded
-      post's id before sending another GET request. If no post is loaded,
-      fetch the data.
+      post's id before sending another GET request. 
       */
       if (
         !this.state.loadedPost ||
