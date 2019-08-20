@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 // enables use of axios instance instead of standard interceptor set in index.js
 // import axios from '../../axios';
 // import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Posts from './Posts/Posts';
+import NewPost from './NewPost/NewPost';
 import './Blog.css';
 
 class Blog extends Component {
@@ -14,16 +15,17 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/new-post">New Post</a>
+                <Link to={{ pathname: '/new-post' }}>New Post</Link>
               </li>
             </ul>
           </nav>
         </header>
-        <Route path="/" exact render={() => <h1>Home</h1>} />
-        <Route path="/" render={() => <h1>Home2</h1>} />
+
+        <Route path="/" exact component={Posts} />
+        <Route path="/new-post" component={NewPost} />
       </div>
     );
   }
