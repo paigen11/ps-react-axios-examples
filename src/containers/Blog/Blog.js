@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // enables use of axios instance instead of standard interceptor set in index.js
 // import axios from '../../axios';
 // import axios from 'axios';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import FullPost from './FullPost/FullPost';
@@ -25,7 +25,7 @@ class Blog extends Component {
                     textDecoration: 'underline',
                   }}
                 >
-                  Home
+                  Posts
                 </NavLink>
               </li>
               <li>
@@ -34,10 +34,11 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-
-        <Route path="/" exact component={Posts} />
-        <Route path="/new-post" component={NewPost} />
-        <Route path="/:id" exact component={FullPost} />
+        <Switch>
+          <Route path="/" exact component={Posts} />
+          <Route path="/new-post" component={NewPost} />
+          <Route path="/:id" exact component={FullPost} />
+        </Switch>
       </div>
     );
   }
