@@ -10,7 +10,7 @@ class FullPost extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     // fetch data for selected Id if not null
     if (this.props.match.params.id) {
       /*
