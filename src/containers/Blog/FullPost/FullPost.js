@@ -10,7 +10,16 @@ class FullPost extends Component {
   };
 
   componentDidMount() {
-    // console.log(this.props);
+    console.log(this.props);
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    console.log(this.props);
+    this.loadData();
+  }
+
+  loadData() {
     // fetch data for selected Id if not null
     if (this.props.match.params.id) {
       /*
@@ -20,7 +29,8 @@ class FullPost extends Component {
       */
       if (
         !this.state.loadedPost ||
-        (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
+        (this.state.loadedPost &&
+          this.state.loadedPost.id != this.props.match.params.id)
       ) {
         axios.get(`/posts/${this.props.match.params.id}`).then(res => {
           this.setState({ loadedPost: res.data });
@@ -30,7 +40,7 @@ class FullPost extends Component {
   }
 
   deletePostHandler = () => {
-    axios.delete('/posts/' + this.props.id).then(res => {
+    axios.delete('/posts/' + this.props.match.params.id).then(res => {
       console.log(res);
     });
   };
@@ -39,7 +49,8 @@ class FullPost extends Component {
     const { loadedPost } = this.state;
     let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
     // on first render, we get Id but fetch not completed yet
-    if (this.props.id) post = <p style={{ textAlign: 'center' }}>Loading...</p>;
+    if (this.props.match.params.id)
+      post = <p style={{ textAlign: 'center' }}>Loading...</p>;
     // component re-rendered with updated stated once fetch completed
     if (loadedPost) {
       post = (
