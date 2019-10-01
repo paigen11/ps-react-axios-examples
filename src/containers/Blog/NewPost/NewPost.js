@@ -13,6 +13,7 @@ class NewPost extends Component {
   };
 
   componentDidMount() {
+    // if unauthorized check => this.props.history.replace('/posts')
     console.log(this.props);
   }
 
